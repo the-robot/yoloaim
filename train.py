@@ -113,7 +113,7 @@ def main(_argv):
             gradients = tape.gradient(total_loss, model.trainable_variables)
             optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
-            if global_steps % FLAGS.print_per_epoch == 0:
+            if global_steps == 1 or global_steps % FLAGS.print_per_epoch == 0:
                 tf.print("=> STEP %4d/%4d   lr: %.6f   giou_loss: %4.2f   conf_loss: %4.2f   "
                         "prob_loss: %4.2f   total_loss: %4.2f" % (global_steps, total_steps, optimizer.lr.numpy(),
                                                                 giou_loss, conf_loss,
